@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Member">
+
+    <select id="selectMemberOne"
+        parameterType="String"
+        resultType="com.example.dto.MemberDTO">
+        SELECT M.* FROM MEMBER M WHERE M.UEMAIL=#{uemail}
+    </select>
+
+    <select id="selectMemberList" 
+        resultType="com.example.dto.MemberDTO">
+        SELECT M.*,
+        TO_CHAR(UREGDATE, 'YYYY-MM-DD') UREGDATE1
+        FROM MEMBER M
+    </select>
+
+<!-- parameter 타입이 없으면 안보내도 된다 -->
+    <insert id = "insertMemberOne" 
+        parameterType="com.example.dto.MemberDTO">
+        INSERT INTO MEMBER( UEMAIL, UPW, UNAME, UPHONE, UROLE)
+        VALUES(#{uemail},#{upw},#{uname},#{uphone},#{urole})
+    </insert>
+
+    <delete id="deleteMemberOne"
+        parameterType="String">
+        DELETE FROM MEMBER WHERE UEMAIL=#{uemail}
+    </delete>
+
+    <update id="updateMemberOne"
+        parameterType="com.example.dto.MemberDTO">
+        UPDATE member SET UNAME=#{uname}, UPHONE=#{uphone} 
+        WHERE UEMAIL=#{uemail}
+    </update>
+
+    <select id="selectMemberLogin"
+        parameterType="com.example.dto.MemberDTO"
+        resultType="com.example.dto.MemberDTO">
+        SELECT M.UEMAIL, M.UNAME, M.UPHONE, M.UROLE FROM MEMBER M WHERE UEMAIL=#{uemail} AND UPW=#{upw}
+    </select>
+</mapper>
+
+<!-- 위의 xml을 java로 변경했을 때
+    pubblic class Member{
+    public int static insertMemberOne(MemberDTO member){
+        INSERT INTO ....
+    }
+} -->

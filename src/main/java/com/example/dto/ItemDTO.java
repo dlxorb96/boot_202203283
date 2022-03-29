@@ -1,0 +1,32 @@
+package com.example.dto;
+
+import java.util.Date;
+import lombok.Data;
+
+@Data
+public class ItemDTO {
+
+    // 물품코드
+    private Long icode;
+    // 물품명
+    private String iname;
+    // 물품내용
+    private String icontent;
+    // 물품가격
+    private Long iprice;
+    // 재고수량
+    private Long iquantity;
+    // 등록일
+    private Date iregdate;
+    // 대표이미지
+    private byte[] iimage;
+    // 이미지크기
+    private Long imagesize;
+    // 이미지타입
+    private String imagetype;
+    // 이미지명
+    private String imagename;
+    // 이메일
+    private String uemail;
+
+}

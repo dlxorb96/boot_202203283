@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Item">
+    <insert id = "insertItemOne" 
+        parameterType="com.example.dto.ItemDTO">
+        INSERT INTO ITEM( ICODE, INAME, ICONTENT, IPRICE, IQUANTITY, IREGDATE, IIMAGE,
+         IIMAGESIZE, IIMAGETYPE, IIMAGENAME, UEMAIL )
+        VALUES(SEQ_ITEM_ICODE.NEXTVAL, #{iname}, #{icontent}, #{iprice}, #{iquantity}, CURRENT_DATE,
+        #{iimage, jdbcType=BLOB}, #{imagesize}, #{imagetype}, #{imagename}, #{uemail})
+    </insert>
+
+    <select id="selectItemlist" 
+        parameterType="map"
+        resultType="com.example.dto.ItemDTO">
+        <!-- 파라미터 타입으로 string int int가 와야하는데
+        parmeter는 하나밖에 못옴. map으로 압축해서 보냄-->
+        SELECT * FROM
+        (SELECT I.ICODE, I.INAME, I.IQUANTITY, I.IPRICE, I.IREGDATE,
+         <!-- COUNT(I.*) PAGES , -->
+        ROW_NUMBER() OVER(ORDER BY I.ICODE DESC) ROWN 
+        FROM ITEM I 
+        WHERE I.INAME LIKE '%' || #{txt} || '%'
+        )
+        WHERE ROWN BETWEEN #{start} AND #{end}
+        
+    </select>
+
+    <select id="selectItemCount" 
+        parameterType="String"
+        resultType="Long">
+        SELECT 
+            COUNT(*) CNT
+        FROM ITEM I
+        WHERE I.INAME LIKE '%' || #{txt} || '%'        
+    </select>
+
+    <select id="selectOne"
+        parameterType="int"
+        resultType="com.example.dto.ItemDTO">
+        SELECT I.* FROM ITEM I WHERE I.ICODE=#{icode}
+    </select>
+</mapper>

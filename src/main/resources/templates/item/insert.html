@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert.html</title>
+</head>
+<body>
+    <h3>물품등록</h3>
+    <form th:action="@{/item/insert}" method="post" 
+    enctype="multipart/form-data">
+    물품명<input type="text" name="iname"><br />
+    내용<input type="password" name="icontent"><br />
+    가격<input type="password" name="iprice"><br />
+    수량<input type="text" name="iquantity"><br />
+    파일<input type="file" name="iimage2"><br />
+    <input type="submit" value="물품등록"><br />
+    </form>
+
+    <div th:replace="~{/footer :: footerFragment}"></div>
+
+</body>
+</html>

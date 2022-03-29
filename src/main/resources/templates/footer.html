@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+    <footer th:fragment="footerFragment">
+    <div th:if="${session.SESSION_EMAIL ==null}">
+    <a th:href="@{/seller/select}">로그인</a>
+    <a th:href="@{/seller/insert}">회원가입</a>
+    </div>
+    <div th:if="${session.SESSION_EMAIL != null}">
+    <a th:href="@{/seller/selectlist}">회원목록</a>
+    <a th:href="@{/seller/logout}">로그아웃</a>
+    <a th:href="@{/item/insert}">물품등록</a>
+    <a th:href="@{/item/selectlist}">물품목록</a>
+    </div>
+    <a th:href="@{/home}">홈화면</a>
+
+    </footer>
+</html>

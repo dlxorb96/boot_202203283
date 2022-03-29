@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update.html</title>
+</head>
+<body>
+
+    <h3>정보변경</h3>
+    <form th:action="@{/seller/update}" method="post">
+    이메일<input type="text" name="uemail" th:value="${obj.uemail}" readonly><br />
+    이름<input type="text" th:value="${obj.uname}" name="uname"><br />
+    전화번호<input type="text" th:value="${obj.uphone}" name="uphone"><br />
+    <input type="submit" value="수정"><br />
+    </form>
+
+    <div th:replace="~{/footer :: footerFragment}"></div>
+
+</body>
+</html>

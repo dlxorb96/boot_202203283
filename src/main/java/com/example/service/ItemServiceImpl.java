@@ -27,8 +27,8 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public long selectItemCount(String txt) {
-        return sqlFactory.openSession().selectOne("Item.selectItemCount", txt);
+    public long selectItemCount(Map<String, Object> map) {
+        return sqlFactory.openSession().selectOne("Item.selectItemCount", map);
     }
 
     @Override
@@ -37,4 +37,8 @@ public class ItemServiceImpl implements ItemService {
         return sqlFactory.openSession().selectOne("Item.selectOne", icode);
     }
 
+    @Override
+    public ItemDTO selectImageOne(long code) {
+        return sqlFactory.openSession().selectOne("Item.selectItemImageOne", code);
+    }
 }

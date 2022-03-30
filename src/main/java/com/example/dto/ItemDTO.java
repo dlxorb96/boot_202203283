@@ -21,11 +21,11 @@ public class ItemDTO {
     // 대표이미지
     private byte[] iimage;
     // 이미지크기
-    private Long imagesize;
+    private Long iimagesize;
     // 이미지타입
-    private String imagetype;
+    private String iimagetype;
     // 이미지명
-    private String imagename;
+    private String iimagename;
     // 이메일
     private String uemail;
 

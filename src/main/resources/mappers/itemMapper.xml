@@ -20,24 +20,47 @@
          <!-- COUNT(I.*) PAGES , -->
         ROW_NUMBER() OVER(ORDER BY I.ICODE DESC) ROWN 
         FROM ITEM I 
-        WHERE I.INAME LIKE '%' || #{txt} || '%'
+        WHERE I.INAME LIKE '%' || #{txt} || '%' AND I.UEMAIL=#{email}
         )
-        WHERE ROWN BETWEEN #{start} AND #{end}
+        WHERE ROWN BETWEEN #{start} AND #{end} 
         
     </select>
 
     <select id="selectItemCount" 
-        parameterType="String"
+        parameterType="map"
         resultType="Long">
         SELECT 
             COUNT(*) CNT
         FROM ITEM I
-        WHERE I.INAME LIKE '%' || #{txt} || '%'        
+        WHERE I.INAME LIKE '%' || #{txt} || '%' AND I.UEMAIL=#{email}
     </select>
 
     <select id="selectOne"
         parameterType="int"
         resultType="com.example.dto.ItemDTO">
-        SELECT I.* FROM ITEM I WHERE I.ICODE=#{icode}
+        SELECT I.ICODE, I.INAME, I.IQUANTITY, I.IPRICE, I.IREGDATE, I.ICONTENT
+        FROM ITEM I WHERE I.ICODE=#{icode}
     </select>
+
+    <resultMap id="result1" type="com.example.dto.ItemDTO">
+        <!-- resultmap 이 있으면 셀렉으로 와서 리저트로 감 원래 셀렉은 리저트 맵이 있음. 1. select으로 온다. 2. resultmap에서 변환 3. 나감 -->
+        <result column="ICODE" property="icode" />  
+        <result column="IIMAGESIZE" property="iimagesize" />  
+        <result column="IIMAGETYPE" property="iimagetype" />  
+        <result column="IIMAGENAME" property="iimagename" />          
+        <result column="IIMAGE" property="iimage" jdbcType="BLOB" />
+    </resultMap>
+
+	<select id="selectItemImageOne" parameterType="long"
+			resultMap="result1">
+		SELECT 
+			ICODE, IIMAGE, IIMAGESIZE, IIMAGETYPE, IIMAGENAME
+		FROM 
+			ITEM
+		WHERE 
+			ICODE = #{code}
+	</select>
+
 </mapper>
+
+

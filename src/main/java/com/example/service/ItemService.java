@@ -15,7 +15,9 @@ public interface ItemService {
     // 물품조회(검색어 + 페이네이션)
     public List<ItemDTO> selectItemList(Map<String, Object> map);
 
-    public long selectItemCount(String txt);
+    public long selectItemCount(Map<String, Object> map);
 
     public ItemDTO selectOne(int icode);
+
+    public ItemDTO selectImageOne(long icode);
 }

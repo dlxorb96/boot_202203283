@@ -13,7 +13,41 @@
     가격:<span th:text="${item.iprice}"></span><br />
     재고수량:<span th:text="${item.iquantity}"></span><br />
     등록일:<span th:text="${item.iregdate}"></span><br />
-    이미지:<span th:text="${item.iname}"></span><br />
+    이미지:<img th:src="@{/item/image(icode=${item.icode})}" style="width: 50px; height: 50px;">
     
+    <!-- <img style="width: 100px;" th:src="@{/item/image(code=${tmp.code})}" -->
+
+
+    <hr />
+    <h3>서브이미지 등록</h3>
+    <form th:action="@{/item/insertImages}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="icode" th:value="${item.icode}" />
+        <th:block th:each="i : ${#numbers.sequence(1,3)}">
+            <input type="file" name="timages"><br />
+        </th:block>
+        <input type="submit" value="서브이미지일괄등록">
+    </form>
+    <hr />
+    <h3>등록된 이미지 표시</h3>
+    <table border="1">
+        <tr>
+            <th>물품이미지코드</th>
+            <th>이미지</th>
+            <th>수정</th>
+            <th>삭제</th>
+        </tr>
+        <tr th:each="tmp: ${imgcode}">
+            <td th:text="${tmp}"></td>
+            <td><img style="width: 100px;" th:src="@{/item/subimage(icode=${tmp})}" /></td>
+            <td><form th:action="@{/item/update(icode=${tmp})}">
+                <input type="file" name="image22">
+                <input type="submit" value="수정">
+            </form>
+            </td>
+            <td>
+                <a th:href="@{/item/delete(icode=${tmp}, ucode=${item.icode})}">삭제</a></td> 
+
+        </tr>
+    </table>
 </body>
 </html>

@@ -228,7 +228,7 @@ public class ItemController {
         obj.setIimagetype(file.getContentType());// 타입
         obj.setIimagesize(file.getSize()); // 사이즈
         obj.setIimagename(file.getOriginalFilename()); // 파일명
-        iiservice.updateItemImageOne(obj)
+        iiservice.updateItemImageOne(obj);
         return "redirect:/item/selectone?icode=" + icode;
     }
 

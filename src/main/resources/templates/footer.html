@@ -2,17 +2,40 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
     <footer th:fragment="footerFragment">
+    <hr />
+    <h3>footer</h3>
+    <a th:href="@{/home}">홈화면</a>
+
+    <hr />
+    <h3>판매자</h3>
     <div th:if="${session.SESSION_EMAIL ==null}">
     <a th:href="@{/seller/select}">로그인</a>
     <a th:href="@{/seller/insert}">회원가입</a>
     </div>
+    
+    
     <div th:if="${session.SESSION_EMAIL != null}">
     <a th:href="@{/seller/selectlist}">회원목록</a>
     <a th:href="@{/seller/logout}">로그아웃</a>
     <a th:href="@{/item/insert}">물품등록</a>
     <a th:href="@{/item/selectlist}">물품목록</a>
     </div>
-    <a th:href="@{/home}">홈화면</a>
-
+    <hr />
+    <h3>구매자</h3>
+    
+    <div th:if="${session.M_EMAIL != null}">
+    <p th:text="|${session.M_NAME}님 환영합니다|"></p>
+    권한: <span th:text="${session.M_ROLE}"></span>
+    <form th:action="@{/member/logout}" method="post">
+        <input type="submit" value="로그아웃">
+        <a th:href="@{/member/address}">주소관리</a>
+    </form>
+    
+    
+    </div>
+    <div th:if="${session.M_EMAIL == null}">
+        <a th:href="@{/member/login}">로그인</a>
+    <a th:href="@{/member/join}">회원가입</a>
+    </div>
     </footer>
 </html>

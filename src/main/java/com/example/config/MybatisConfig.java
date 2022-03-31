@@ -18,6 +18,7 @@ public class MybatisConfig {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
 
+        // 이건 service와 xml mapper를 사용할 때 필요함.
         // mappers 위치 설정
         Resource[] arrResource = new PathMatchingResourcePatternResolver()
                 .getResources("classpath:/mappers/*Mapper.xml");

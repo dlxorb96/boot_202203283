@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home.html</title>
+</head>
+<body>
+    <h3>쇼핑몰</h3>
+
+    
+
+    
+    
+    <select name="type" id="type">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+
+    <hr />
+    <div style="padding: 50px;">    
+        <h3>등록날짜별 내림차순</h3> 
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr);">
+        
+        <th:block th:each="tmp : ${list1}">
+            <a th:href="@{/shop/detail(code=${tmp.icode})}">
+                <div style="display: inline-block; width: 200px; height: 200px; margin-bottom: 10px; border: 1px solid black;">
+                    <img th:src="@{/item/image(icode=${tmp.icode})}"  style="width: 100px; height: 100px;"><br />
+                    <span th:text="${tmp.icode}"></span><br />
+                    <span th:text="${tmp.iname}"></span><br />
+                    <span th:text="${tmp.iprice}"></span><br />
+                </div>
+            </a>
+        </th:block>
+    </div>
+</div>
+
+<hr />
+
+    <div style="padding: 50px;">
+    <h3>이름 오름차순</h3>     
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr);">
+        
+        <th:block th:each="tmp : ${list2}">
+            
+            <div style="display: inline-block; width: 200px; height: 200px; margin-bottom: 10px; border: 1px solid black;">
+                <img th:src="@{/item/image(icode=${tmp.icode})}"  style="width: 100px; height: 100px;"><br />
+                <span th:text="${tmp.icode}"></span><br />
+                <span th:text="${tmp.iname}"></span><br />
+                <span th:text="${tmp.iprice}"></span><br />
+            </div>
+        </th:block>
+    </div>
+</div>
+
+    
+<hr />
+<div style="padding: 50px;">
+    <h3>가격 오름차순</h3>     
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr);">
+        
+        <th:block th:each="tmp : ${list3}">
+            
+            <div style="display: inline-block; width: 200px; height: 200px; margin-bottom: 10px; border: 1px solid black;">
+                <img th:src="@{/item/image(icode=${tmp.icode})}"  style="width: 100px; height: 100px;"><br />
+                <span th:text="${tmp.icode}"></span><br />
+                <span th:text="${tmp.iname}"></span><br />
+                <span th:text="${tmp.iprice}"></span><br />
+            </div>
+        </th:block>
+    </div>
+</div>
+    
+    
+    <div th:replace="~{/footer :: footerFragment}"></div>
+</body>
+</html>

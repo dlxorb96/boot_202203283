@@ -7,7 +7,7 @@
         INSERT INTO ITEM( ICODE, INAME, ICONTENT, IPRICE, IQUANTITY, IREGDATE, IIMAGE,
          IIMAGESIZE, IIMAGETYPE, IIMAGENAME, UEMAIL )
         VALUES(SEQ_ITEM_ICODE.NEXTVAL, #{iname}, #{icontent}, #{iprice}, #{iquantity}, CURRENT_DATE,
-        #{iimage, jdbcType=BLOB}, #{imagesize}, #{imagetype}, #{imagename}, #{uemail})
+        #{iimage, jdbcType=BLOB}, #{iimagesize}, #{iimagetype}, #{iimagename}, #{uemail})
     </insert>
 
     <select id="selectItemlist" 

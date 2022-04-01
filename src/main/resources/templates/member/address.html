@@ -42,10 +42,10 @@
                     <input type="hidden" th:value="${tmp.ucode}"  name="chk">
                     <input type="submit" value="대표이미지 설정">
                 </form>
-                <form th:action="@{/member/updateaddr(code=${tmp.ucode})}" method="post">
-                    <input type="hidden" th:value="${tmp.ucode}" name="chk">
-                    <input type="submit" value="수정">
-                </form>
+                <a th:href="@{/member/updateaddr(code=${tmp.ucode})}">수정</a>
+
+                    
+                
                 <form th:action="@{/member/deleteaddr(code=${tmp.ucode})}" method="post">
                     <input type="hidden" th:value="${tmp.ucode}" name="chk">
                     <input type="submit" value="삭제">

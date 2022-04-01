@@ -53,4 +53,20 @@ public interface MemberMapper {
         })
         public int memberAddrDelete(@Param(value = "code") long code);
 
+        // 1개 주소 정보 가죠오기
+
+        //
+        @Select({
+                        "SELECT UCODE, UADDRESSS, UPOSTCODE FROM MEMBERADDR WHERE UCODE=#{code} AND UEMAIL=#{email}"
+        })
+
+        public MemberAddrDTO memberselectOne(
+                        @Param(value = "code") long code,
+                        @Param(value = "email") String email);
+
+        @Update({
+                        "UPDATE MEMBERADDR SET UADDRESSS = #{memberaddr.uaddresss},UPOSTCODE=#{memberaddr.upostcode} WHERE UCODE=#{memberaddr.ucode} AND UEMAIL= #{memberaddr.uemail}"
+        })
+        public int MemberUpdateAddrAction(
+                        @Param(value = "memberaddr") MemberAddrDTO memberaddr);
 }

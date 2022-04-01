@@ -121,11 +121,18 @@ public class MemberController {
         return "redirect:/member/address";
     }
 
-    @PostMapping(value = "/updateaddr")
+    @GetMapping(value = "/updateaddr")
     public String updateaddrPOST(
-            @RequestParam(name = "chk") Long chk) {
-        System.out.println(chk);
-        return "redirect:/member/address";
+            Model model,
+            @RequestParam(name = "code") Long code) {
+        String email = (String) httpSession.getAttribute("M_EMAIL");
+        if (email != null) {
+            MemberAddrDTO retaddr = mMapper.memberselectOne(code, email);
+            model.addAttribute("addr", retaddr);
+            return "/member/updateaddr";
+        }
+
+        return "/member/login";
     }
 
     @PostMapping(value = "/deleteaddr")
@@ -138,4 +145,20 @@ public class MemberController {
         }
         return "redirect:/member/login";
     }
+
+    @PostMapping(value = "/updateAddrAction")
+    public String updateAddrActionPOST(
+            @ModelAttribute MemberAddrDTO memberaddr) {
+        String email = (String) httpSession.getAttribute("M_EMAIL");
+        memberaddr.setUemail(email);
+        System.out.println("--------------------" + memberaddr);
+        // MemberAddrDTO retmemaddr =
+        int ret = mMapper.MemberUpdateAddrAction(memberaddr);
+        if (ret == 1) {
+            return "redirect:/member/address";
+        }
+        return "/member/updateaddr?code=" + memberaddr.getUcode();
+
+    }
+
 }

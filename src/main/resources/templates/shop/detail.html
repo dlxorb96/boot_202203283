@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>/item/selectone.html</title>
+</head>
+<body>
+    <form th:action="@{/shop/cart}" method="post">
+    <h3>상품상세페이지</h3>
+    상품명:<span th:text="${item.iname}"></span><br />
+    상품설명:<span th:text="${item.icontent}"></span><br />
+    가격:<span th:text="${item.iprice}"></span><br />
+    재고수량:<span th:text="${item.iquantity}"></span><br />
+
+    <select name="cnt">
+        <th:block th:if="${item.iquantity < 200}">
+            <option th:each="i : ${#numbers.sequence(1,item.iquantity)}" th:text="${i}" th:value="${i}"></option>
+        </th:block>
+
+        <th:block th:if="${item.iquantity >= 200}">
+            <option th:each="i : ${#numbers.sequence(1,200)}" th:text="${i}" th:value="${i}"></option>
+        </th:block>
+    </select>
+
+
+
+    등록일:<span th:text="${item.iregdate}"></span><br />
+    이미지:<img th:src="@{/item/image(icode=${item.icode})}" style="width: 350px; height: 350px;">
+    
+    <th:block th:each="tmp: ${imgcode}">
+        <td th:text="${tmp}"></td>
+        <td><img style="width: 100px;" th:src="@{/shop/subimage(icode=${tmp})}" /></td>
+    </th:block>
+
+    <hr />
+    <input type="hidden" name="icode" th:value="${item.icode}">
+    <input type="submit" value="장바구니" />
+    <input type="submit" value="주문하기" />
+    </form>
+
+</body>
+</html>

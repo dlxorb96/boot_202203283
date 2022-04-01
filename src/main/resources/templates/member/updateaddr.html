@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주소수정</title>
+</head>
+<body>
+    <h3>주소수정</h3>
+    <div style="height: 500px;">
+        <form th:action="@{/member/updateAddrAction}" method="post">
+            주소코드: <input type="text" name="ucode" th:value="${addr.ucode}" readonly><br />
+            주소: <input type="text" name="uaddresss" th:value="${addr.uaddresss}"><br />
+            우편번호: <input type="text" name="upostcode" th:value="${addr.upostcode}"><br />
+            <input type="submit" value="수정하기">
+        </form>
+        
+
+
+    </div>
+
+    <div th:replace="~{/footer :: footerFragment}"></div>
+
+</body>
+</html>

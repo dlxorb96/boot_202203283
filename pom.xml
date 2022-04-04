@@ -23,6 +23,12 @@
     		<scope>runtime</scope> <!-- *** 배포시에는 삭제 -->
     	</dependency>
 
+		<!-- aop -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
 		<!-- oracle session -->
 		<dependency>
 			<groupId>org.springframework.session</groupId>

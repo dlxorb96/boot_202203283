@@ -3,11 +3,16 @@ package com.example.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.example.dto.BuyDTO;
+import com.example.dto.CartDTO;
 import com.example.dto.ItemDTO;
 import com.example.dto.ItemimageDTO;
+import com.example.mapper.BuyMapper;
+import com.example.mapper.CartMapper;
 import com.example.mapper.ItemImageMapper;
 import com.example.mapper.ItemMapper;
 
@@ -40,28 +45,63 @@ public class ShopController {
     @Autowired
     HttpSession httpsession;
 
+    @Autowired
+    CartMapper cMapper;
+
+    @Autowired
+    BuyMapper bMapper;
+
     @GetMapping(value = "/cart")
     public String cartGET() {
 
         return "/shop/cart";
     }
 
+    @GetMapping(value = "/buylist")
+    public String orderlistGET(Model model) {
+        String em = (String) httpsession.getAttribute("M_EMAIL");
+        if (em == null) {
+            return "redirect:/member/login";
+        }
+
+        List<Map<String, Object>> list = bMapper.selectBuyListMap(em);
+        for (Map<String, Object> key : list) {
+            System.out.println(key);
+
+        }
+        model.addAttribute("list", list);
+        return "/shop/orderlist";
+    }
+
     // detail페이지에서 주문하기 눌렀을 때
     @PostMapping(value = "/cart")
     public String cartPOST(
+            @RequestParam(name = "btn") String btn,
             @RequestParam(name = "icode") long icode,
             @RequestParam(name = "cnt") long ccnt) {
         String em = (String) httpsession.getAttribute("M_EMAIL");
-        if (em != null) {
-            System.out.println("코드------------------------" + icode);
-            System.out.println("수량=======================" + ccnt);
-            System.out.println(em);
-        } else {
-            System.out.println("코드------------------------" + icode);
-            System.out.println("수량=======================" + ccnt);
-            System.out.println(httpsession.getId());
+
+        if (em == null) {
+            return "redirect:/member/login";
         }
-        return "redirect:/shop/detail?code=" + icode;
+        if (btn.equals("장바구니")) {
+            // 로그인되었다면
+            CartDTO cart = new CartDTO();
+            cart.setIcode(icode);
+            cart.setCcnt(ccnt);
+            cart.setUemail(em);
+            cMapper.insertCartOne(cart);
+            return "redirect:/shop/cartlist";
+
+        } else if (btn.equals("주문하기")) {
+            BuyDTO buy = new BuyDTO();
+            buy.setBcnt(ccnt);
+            buy.setIcode(icode);
+            buy.setUemail(em);
+            bMapper.insertBuyOne(buy);
+            return "redirect:/shop/buylist";
+        }
+        return "redirect:/";
     }
 
     @GetMapping(value = { "/", "/home" })

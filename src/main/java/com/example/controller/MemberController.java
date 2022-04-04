@@ -67,9 +67,12 @@ public class MemberController {
             httpSession.setAttribute("M_EMAIL", retmember.getUemail());
             httpSession.setAttribute("M_NAME", retmember.getUname());
             httpSession.setAttribute("M_ROLE", retmember.getUrole());
-            return "redirect:/";
-        }
 
+            // 로그인성공
+            String url = (String) httpSession.getAttribute("BACKURL");
+            return "redirect:" + url;
+        }
+        // 로그인실패
         return "redirect:/member/login";
     }
 

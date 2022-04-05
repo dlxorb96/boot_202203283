@@ -69,4 +69,21 @@ public interface MemberMapper {
         })
         public int MemberUpdateAddrAction(
                         @Param(value = "memberaddr") MemberAddrDTO memberaddr);
+
+        @Select({
+                        "SELECT UEMAIL, UNAME, UPW, UROLE FROM MEMBER",
+                        " WHERE UEMAIL=#{email}"
+        })
+
+        public MemberDTO memberEmail(
+                        @Param(value = "email") String email);
+
+        @Select({
+                        "SELECT UEMAIL, UNAME, UPW, UROLE, UPHONE FROM MEMBER",
+                        " WHERE UEMAIL=#{email}"
+        })
+
+        public MemberDTO memberEmail2(
+                        @Param(value = "email") String email);
+
 }

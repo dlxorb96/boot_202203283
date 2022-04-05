@@ -78,7 +78,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // h2 console db사용을 위해서 임시로
         // 나중에 빼야함. 보안을 위해
-        // http.csrf().disable(); //보안에 취약
+        // http.csrf().disable(); // 보안에 취약
 
         http.csrf().ignoringAntMatchers("/h2-console/**");
         http.headers().frameOptions().sameOrigin();

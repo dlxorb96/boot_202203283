@@ -9,7 +9,7 @@ import com.example.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-// import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -38,14 +38,15 @@ public class MemberDetailServiceImpl implements UserDetailsService {
         // 권한을 여러개 줄 수 있다 customer, seller, admin 이렇게
 
         // 아이디, 암호, 권한들 ... 직접 커스터마이징할 수 있게 만들어진거임.
-        // User user = new User(member.getUemail(), member.getUpw(), role);
+        User user = new User(member.getUemail(), member.getUpw(), role);
 
-        MemberDTO member2 = mMapper.memberEmail2(username);
-        MyUserDTO userDTO = new MyUserDTO(member2.getUemail(), member2.getUpw(), role,
-                member2.getUphone(), member2.getUname());
+        // MemberDTO member2 = mMapper.memberEmail2(username);
+        // MyUserDTO userDTO = new MyUserDTO(member2.getUemail(), member2.getUpw(),
+        // role,
+        // member2.getUphone(), member2.getUname());
         // 암호화를 했기 때문에 안 됨.
 
-        return userDTO;
+        return user;
     }
 
 }

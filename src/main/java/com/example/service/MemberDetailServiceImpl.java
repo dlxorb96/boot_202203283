@@ -3,7 +3,7 @@ package com.example.service;
 import java.util.Collection;
 
 import com.example.dto.MemberDTO;
-import com.example.dto.MyUserDTO;
+// import com.example.dto.MyUserDTO;
 import com.example.mapper.MemberMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -19,7 +19,7 @@ public class MyUserDTO extends User {
         this.userpassword = password;
         this.userphone = userphone; // 연락처
         this.name = name; // 이름
-
+        // System.out.println(username, userpassword, userphone, name);
     }
-
+    // System.out.println(username, userpassword, userphone, name);
 }

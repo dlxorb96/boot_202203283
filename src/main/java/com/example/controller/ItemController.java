@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.example.dto.ItemDTO;
 import com.example.dto.ItemimageDTO;
+import com.example.mapper.ItemMapper;
 import com.example.service.ItemImagesService;
 import com.example.service.ItemService;
 
@@ -32,6 +33,9 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping(value = "/item")
 public class ItemController {
+
+    @Autowired
+    ItemMapper iMapper;
 
     @Autowired
     ItemService iService;
@@ -61,7 +65,9 @@ public class ItemController {
 
         item.setUemail((String) httpSession.getAttribute("SESSION_EMAIL"));
 
-        int ret = iService.insertItem(item);
+        int ret = iMapper.insertItemOne(item);
+
+        // int ret = iService.insertItem(item);
         if (ret == 1) {
             return "redirect:/home";
         }

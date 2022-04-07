@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 2000,
     "height": 2000,
-    "scrollTop": -65,
-    "scrollLeft": -621,
-    "zoomLevel": 1,
+    "scrollTop": -611,
+    "scrollLeft": -107,
+    "zoomLevel": 0.6,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -1029,13 +1029,105 @@
               "widthDefault": 60
             },
             "id": "9410eb6c-cca5-4e24-b760-32a30895e0f5"
+          },
+          {
+            "name": "BIMAGE",
+            "comment": "대표이미지",
+            "dataType": "BLOB",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 67,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "df0f082e-a012-46f9-8e0d-7fc5e70f7801"
+          },
+          {
+            "name": "BIMAGESIZE",
+            "comment": "대표이미지크기",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 74.0966796875,
+              "widthComment": 93,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "35a2ed79-c178-4cea-91cd-c12705127140"
+          },
+          {
+            "name": "BIMAGETYPE",
+            "comment": "대표이미지타입",
+            "dataType": "VARCHAR2(30)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 77.86083984375,
+              "widthComment": 93,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "24b50ab7-451d-48ce-8540-2f683445e580"
+          },
+          {
+            "name": "BIMAGENAME",
+            "comment": "대표이미지명",
+            "dataType": "VARCHAR2(100)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 86.37939453125,
+              "widthComment": 80,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "ad58416d-b1fc-4734-891e-d70fe4d14840"
           }
         ],
         "ui": {
           "active": false,
           "left": 642.5555,
           "top": 765.9997,
-          "zIndex": 11,
+          "zIndex": 26,
           "widthName": 60,
           "widthComment": 80
         },
@@ -2632,7 +2724,7 @@
           "columnIds": [
             "f2bf54a7-f238-42db-a917-73d66dd73a47"
           ],
-          "x": 861.717609375,
+          "x": 761.9357490234376,
           "y": 765.9997,
           "direction": "top"
         },
@@ -2676,7 +2768,7 @@
             "757a23a4-08e3-4db4-9d09-12281c3f4e84"
           ],
           "x": 642.5555,
-          "y": 844.7497,
+          "y": 865.2497,
           "direction": "left"
         },
         "end": {
@@ -2727,9 +2819,9 @@
           "columnIds": [
             "757a23a4-08e3-4db4-9d09-12281c3f4e84"
           ],
-          "x": 1080.87971875,
-          "y": 1028.4996999999998,
-          "direction": "right"
+          "x": 1000.6962470703126,
+          "y": 765.9997,
+          "direction": "top"
         },
         "end": {
           "tableId": "1704a13c-f746-4b9d-9311-672147116ee4",
@@ -2814,8 +2906,8 @@
           "columnIds": [
             "9410eb6c-cca5-4e24-b760-32a30895e0f5"
           ],
-          "x": 1080.87971875,
-          "y": 818.4997,
+          "x": 1120.07649609375,
+          "y": 865.2497,
           "direction": "right"
         },
         "constraintName": "fk_review_to_board",
@@ -2831,8 +2923,8 @@
           "columnIds": [
             "757a23a4-08e3-4db4-9d09-12281c3f4e84"
           ],
-          "x": 861.717609375,
-          "y": 1080.9996999999998,
+          "x": 881.315998046875,
+          "y": 1162.9996999999998,
           "direction": "bottom"
         },
         "end": {
@@ -2962,7 +3054,7 @@
             "757a23a4-08e3-4db4-9d09-12281c3f4e84"
           ],
           "x": 642.5555,
-          "y": 1002.2497,
+          "y": 1063.7496999999998,
           "direction": "left"
         },
         "end": {
@@ -3013,8 +3105,8 @@
           "columnIds": [
             "757a23a4-08e3-4db4-9d09-12281c3f4e84"
           ],
-          "x": 1080.87971875,
-          "y": 923.4997,
+          "x": 1120.07649609375,
+          "y": 1063.7496999999998,
           "direction": "right"
         },
         "end": {
